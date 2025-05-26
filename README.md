@@ -76,7 +76,7 @@ Install dependencies using:
     pip install -r requirements.txt
 ```
 
-# How to Run the App
+# How to Run
 ```
   1. git clone https://github.com/Abdallah-Ali247/auto-analysis.git 
   2. cd auto-analysis
