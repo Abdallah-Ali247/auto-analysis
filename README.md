@@ -9,7 +9,7 @@ A Flask-based web application that automates data analysis by preprocessing data
 ## 📚 Table of Contents
 
 - [Overview](#overview)
-- [Features](#-features)
+- [Features](#features)
 - [Project Structure](#project-structure)
 - [Requirements](#requirements)
 - [How to Run](#how-to-run)
@@ -29,7 +29,7 @@ The backend handles preprocessing, visualization, and plotting logic using Panda
 
 ---
 
-#Features
+# Features
 
 - 📁 **Upload CSV File**: Analyze your own dataset.
 - 📦 **Built-In Datasets**: Use any of 10+ Seaborn datasets like `titanic`, `tips`, `iris`, etc.
