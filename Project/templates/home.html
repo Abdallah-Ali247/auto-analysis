@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auto Analysis</title>
+    <link rel="icon" href="{{ url_for('static', filename='analysis.png') }}" type="image/x-icon">
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 14px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        label {
+            display: inline-block;
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #4c4c4c;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="checkbox"]:checked + label {
+            background-color: #6c757d;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        select,
+        input[type="file"],
+        button {
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4c4c4c;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #6c757d;
+        }
+    </style>
+    <script>
+        function toggleForm() {
+            var selectBox = document.getElementById("dataset-select");
+            var fileInput = document.getElementById("dataset-file");
+            var toggleButton = document.getElementById("toggle-button");
+            
+            if (toggleButton.checked) {
+                selectBox.disabled = true;
+                fileInput.disabled = false;
+            } else {
+                selectBox.disabled = false;
+                fileInput.disabled = true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose Your DataSet</h1>
+        
+        <input id="toggle-button" type="checkbox" onclick="toggleForm()">
+        <label for="toggle-button">Load from Local PC</label>
+
+
+        <form method="POST" action="{{ url_for('load_dataset') }}" enctype="multipart/form-data">
+            <select name="dataset_name" id="dataset-select">
+                {% for name in dataset_names %}
+                    <option value="{{ name }}">{{ name }}</option>
+                {% endfor %}
+            </select>
+
+            <input type="file" name="dataset_file" id="dataset-file" accept=".csv" disabled>
+            <button type="submit">Load Dataset</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Auto Analysis</title>
+    <link rel="icon" href="{{ url_for('static', filename='analysis.png') }}" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #222;
+            color: #f0f0f0;
+            
+        }
+
+        h1,h2,h3,ul {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #666;
+            margin: 20px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-color: orange;
+            text-align: center;
+            color: orange;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid orange;
+            text-align: center;
+            color: #f0f0f0;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 25px;
+            font-size: 18px;
+        }
+
+        .figure-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .no-data {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .column-list {
+            margin: 20px 0;
+        }
+
+        .column-list li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+
+<body>
+
+    {% if not valid %}
+    <div>
+        <h1>Can't Load the File , Try to Load a Valid File</h1>
+    </div>
+    
+    {%else%}
+    
+        <div class="container">
+            
+            {% if head_table %}
+                <h1>{{ df_name.title() }} DataSet</h1>
+                <div class="table-container">
+                    {{ head_table | safe }}
+                </div>
+                <hr>
+            {% endif %}
+
+            {% if info_table %}
+                <div>
+                    <h2>Dataset - Info</h2>
+                    <pre>{{ info_table }}</pre>
+                </div>
+                <hr>
+            {% endif %}
+
+            {% if des_n %}
+                <div>
+                    <h2>Numerical Describe</h2>
+                    {{ des_n | safe }}
+                </div>
+                <hr>
+            {% endif %}
+
+            {% if des_c %}
+                <div>
+                    <h2>Object Describe</h2>
+                    {{ des_c | safe }}
+                </div>
+                <hr>
+            {% endif %}
+
+            {% if data %}
+                <div>
+                    <h1>Data Analysis || After Cleaning...</h1>
+                    {% for fig_list in data.values() %}
+                        {% for fig in fig_list %}
+                            <div class="figure-container">
+                                <img src='data:image/png;base64,{{fig}}' alt="Plot" />
+                            </div>
+                            <hr>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="no-data">
+                    <h1>No Enough Features To Plot</h1>
+                </div>
+            {% endif %}
+
+            {% if other_list %}
+                <div class="column-list">
+                    <h2>Columns That Have No Plots (High Cardinality)</h2>
+                    <ul>
+                        {% for col in other_list %}
+                            <li>{{col}}</li>
+                        {% endfor %}
+                    </ul>
+                    <h3>You Need To Look at it</h3>
+                </div>
+            {% endif %}
+        </div>
+
+        {%endif%}
+</body>
+</html>
