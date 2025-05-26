@@ -16,7 +16,7 @@ A Flask-based web application that automates data analysis by preprocessing data
 - [Usage](#usage)
 ---
 
-# 🔍 Overview
+# Overview
 
 This web app allows users to:
 - Upload their own `.csv` dataset.
@@ -53,7 +53,7 @@ The backend handles preprocessing, visualization, and plotting logic using Panda
 
 ---
 
-# 📁 Project Structure
+# Project Structure
 ```
     /auto-analysis-web-app/
     │
@@ -68,7 +68,7 @@ The backend handles preprocessing, visualization, and plotting logic using Panda
 
 ---
 
-# ⚙️ Requirements
+# Requirements
 
 Install dependencies using:
 
@@ -76,13 +76,13 @@ Install dependencies using:
     pip install -r requirements.txt
 ```
 
-# 🚀 How to Run the App
+# How to Run the App
 ```
   1. git clone https://github.com/Abdallah-Ali247/auto-analysis.git 
   2. cd auto-analysis
   3. python main.py
 ```
-# 🖥️ Usage
+# Usage
 
 1. On the homepage:
   * Select a built-in dataset from the dropdown.
